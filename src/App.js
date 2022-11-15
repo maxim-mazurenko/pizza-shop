@@ -1,16 +1,29 @@
-import './App.css';
+import './scss/app.scss';
+import Header from './components/Header';
+import Categories from './components/Categories';
+import Sort from './components/Sort';
+import PizzaItems from './components/PizzaItems';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Привет мир!</h1>
+    <div className="wrapper">
+      <Header />
+      <div className="content">
+        <div className="container">
+          <div className="content__top">
+            <Categories />
+            <Sort />
+          </div>
+          <h2 className="content__title">Все пиццы</h2>
+          <div className="content__items">
+            <PizzaItems price="777" />
+            <PizzaItems price="666" />
+            <PizzaItems price="888" />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
 
-function Asd() {
-  return <h2>sdf</h2>;
-}
-
 export default App;
-export { Asd };
