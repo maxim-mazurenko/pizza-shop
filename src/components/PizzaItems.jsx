@@ -1,3 +1,5 @@
+import React from 'react';
+
 function PizzaItems({ price }) {
   return (
     <div className="pizza-block">
@@ -20,7 +22,7 @@ function PizzaItems({ price }) {
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">{price} руб.</div>
-        <div className="button button--outline button--add">
+        <button className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -33,8 +35,8 @@ function PizzaItems({ price }) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          <i>1</i>
+        </button>
       </div>
     </div>
   );
