@@ -17,8 +17,8 @@ function App() {
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
-            {pizzasDB.map((obj) => (
-              <PizzaItems key={obj.id} props={obj} />
+            {pizzasDB.map((obj, i) => (
+              <PizzaItems key={obj.id} {...obj} />
             ))}
           </div>
         </div>

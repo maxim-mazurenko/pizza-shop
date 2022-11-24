@@ -1,12 +1,10 @@
 import React from 'react';
 
-// { id, imageUrl, title, types, sizes, price, category, rating }
-
-function PizzaItems({ props: { id, imageUrl, title, types, sizes, price, category, rating } }) {
+function PizzaItems({ id, imageUrl, title, types, sizes, price, category, rating }) {
   const [sizeClassActive, setSizeClassActive] = React.useState(0);
   const [typeClassActive, setTypeClassActive] = React.useState(0);
+  const typePizza = ['тонкое', 'традиционное'];
 
-  console.log(category);
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
@@ -15,15 +13,17 @@ function PizzaItems({ props: { id, imageUrl, title, types, sizes, price, categor
         <ul>
           {types.map((type, i) => (
             <li
+              key={i}
               onClick={() => setTypeClassActive(i)}
               className={typeClassActive === i ? 'active' : null}>
-              {type === 0 ? 'тонкое' : 'традиционное'}
+              {typePizza[type]}
             </li>
           ))}
         </ul>
         <ul>
           {sizes.map((size, i) => (
             <li
+              key={i}
               onClick={() => setSizeClassActive(i)}
               className={sizeClassActive === i ? 'active' : null}>
               {size} см.
