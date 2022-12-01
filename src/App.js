@@ -1,9 +1,8 @@
+import React from 'react';
 import './scss/app.scss';
 import Header from './components/Header';
-import Categories from './components/Categories';
-import Sort from './components/Sort';
-import PizzaItems from './components/PizzaItems';
-import pizzasDB from './assets/pizza.json';
+import { Outlet } from 'react-router-dom';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -11,16 +10,7 @@ function App() {
       <Header />
       <div className="content">
         <div className="container">
-          <div className="content__top">
-            <Categories />
-            <Sort />
-          </div>
-          <h2 className="content__title">Все пиццы</h2>
-          <div className="content__items">
-            {pizzasDB.map((obj, i) => (
-              <PizzaItems key={obj.id} {...obj} />
-            ))}
-          </div>
+          <Outlet />
         </div>
       </div>
     </div>

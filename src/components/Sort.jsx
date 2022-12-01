@@ -1,14 +1,14 @@
 import React from 'react';
 
 function Sort() {
-  const [showPopup, setShowPupup] = React.useState(false);
+  const [showPopup, setShowPopup] = React.useState(false);
   const [activePopupCategory, setActivePopupCategory] = React.useState(0);
-
   const popupCategory = ['Популярности', 'Цене', 'Алфавиту'];
+  const sortName = popupCategory[activePopupCategory];
 
   const onClickListItem = (i) => {
     setActivePopupCategory(i);
-    setShowPupup(false);
+    setShowPopup(false);
   };
 
   return (
@@ -26,7 +26,7 @@ function Sort() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setShowPupup(!showPopup)}>{popupCategory[activePopupCategory]}</span>
+        <span onClick={() => setShowPopup(!showPopup)}>{sortName}</span>
       </div>
       {showPopup && (
         <div className="sort__popup">
