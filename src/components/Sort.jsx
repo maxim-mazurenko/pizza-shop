@@ -1,13 +1,17 @@
 import React from 'react';
 
-function Sort() {
+function Sort({ sortType, setSortType }) {
+  const popupCategory = [
+    { name: 'Популярное', sortProperty: 'rating', sortParameter: '&order=desc' },
+    { name: 'Менее популярное', sortProperty: 'rating', sortParameter: '&order=asc' },
+    { name: 'Сначала дешевые', sortProperty: 'price', sortParameter: '&order=asc' },
+    { name: 'Сначала дорогие', sortProperty: 'price', sortParameter: '&order=desc' },
+    { name: 'по-алфавиту', sortProperty: 'title', sortParameter: '&order=asc' },
+  ];
   const [showPopup, setShowPopup] = React.useState(false);
-  const [activePopupCategory, setActivePopupCategory] = React.useState(0);
-  const popupCategory = ['Популярности', 'Цене', 'Алфавиту'];
-  const sortName = popupCategory[activePopupCategory];
 
   const onClickListItem = (i) => {
-    setActivePopupCategory(i);
+    setSortType(i);
     setShowPopup(false);
   };
 
@@ -26,7 +30,7 @@ function Sort() {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setShowPopup(!showPopup)}>{sortName}</span>
+        <span onClick={() => setShowPopup(!showPopup)}>{sortType.name}</span>
       </div>
       {showPopup && (
         <div className="sort__popup">
@@ -34,9 +38,9 @@ function Sort() {
             {popupCategory.map((item, i) => (
               <li
                 key={i}
-                className={activePopupCategory === i ? 'active' : null}
-                onClick={() => onClickListItem(i)}>
-                {item}
+                className={sortType.name === item.name ? 'active' : null}
+                onClick={() => onClickListItem(item)}>
+                {item.name}
               </li>
             ))}
           </ul>

@@ -9,6 +9,20 @@
     align-items: center;
     justify-content: space-between;
   }
+  @media screen and (max-width: 625px) {
+    .header {
+      &__logo {
+        max-width: 250px;
+      }
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
 
   &__logo {
     display: flex;
