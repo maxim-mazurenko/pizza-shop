@@ -1,19 +1,19 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { sortType, setShowPopup } from '../redux/slices/filterSlice';
 
-function Sort({ sortType, setSortType }) {
+function Sort() {
   const popupCategory = [
-    { name: 'Популярное', sortProperty: 'rating', sortParameter: '&order=desc' },
-    { name: 'Менее популярное', sortProperty: 'rating', sortParameter: '&order=asc' },
-    { name: 'Сначала дешевые', sortProperty: 'price', sortParameter: '&order=asc' },
-    { name: 'Сначала дорогие', sortProperty: 'price', sortParameter: '&order=desc' },
-    { name: 'по-алфавиту', sortProperty: 'title', sortParameter: '&order=asc' },
+    { name: 'Популярное', sortProperty: '-rating' },
+    { name: 'Менее популярное', sortProperty: 'rating' },
+    { name: 'Сначала дешевые', sortProperty: 'price' },
+    { name: 'Сначала дорогие', sortProperty: '-price' },
+    { name: 'по-алфавиту', sortProperty: 'title' },
   ];
-  const [showPopup, setShowPopup] = React.useState(false);
 
-  const onClickListItem = (i) => {
-    setSortType(i);
-    setShowPopup(false);
-  };
+  const { sortValue, showPopup } = useSelector((state) => state.filter);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="sort">
@@ -30,7 +30,7 @@ function Sort({ sortType, setSortType }) {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setShowPopup(!showPopup)}>{sortType.name}</span>
+        <span onClick={() => dispatch(setShowPopup())}>{sortValue.name}</span>
       </div>
       {showPopup && (
         <div className="sort__popup">
@@ -38,8 +38,8 @@ function Sort({ sortType, setSortType }) {
             {popupCategory.map((item, i) => (
               <li
                 key={i}
-                className={sortType.name === item.name ? 'active' : null}
-                onClick={() => onClickListItem(item)}>
+                className={sortValue.name === item.name ? 'active' : null}
+                onClick={() => dispatch(sortType(item))}>
                 {item.name}
               </li>
             ))}
